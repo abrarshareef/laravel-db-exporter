@@ -26,7 +26,7 @@ class SeedCommand extends Command
      */
     public function __construct()
     {
-        $this->signature   = 'vi-kon:db-exporter:seed';
+        $this->name   = 'vi-kon:db-exporter:seed';
         $this->description = 'Create seed files from database tables';
 
         parent::__construct();
