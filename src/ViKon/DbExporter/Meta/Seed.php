@@ -115,6 +115,8 @@ class Seed
                         $value = (string)$value;
                         break;
                 }
+                $value = ( ($column == 'deleted_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
+
                 $modelData[] = var_export($value, true);
             }
             $tableData[] = '[' . implode(',', $modelData) . ']';
