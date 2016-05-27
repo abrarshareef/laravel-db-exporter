@@ -32,10 +32,12 @@ class {{className}} extends Seeder {
         $progress->start({{count}});
 
         $data = include(__DIR__ . '/data/{{tableName}}_table_data.php');
+        $dataArray = [];
 	    foreach($data as $row) {
-	        $this->create($row);
+	        array_push($dataArray, $this->create($row));
 	        $progress->advance();
 	    }
+	    {{model}}::create($data);
 
         $progress->finish();
         $this->command->getOutput()->writeln('');
@@ -46,7 +48,8 @@ class {{className}} extends Seeder {
         foreach ($this->structure as $i => $key) {
             $data[$key] = $values[$i];
         }
-	    {{model}}::create($data);
+        return $data;
+
 	}
 
 }
