@@ -37,7 +37,7 @@ class {{className}} extends Seeder {
 	        array_push($dataArray, $this->create($row));
 	        $progress->advance();
 	    }
-	    {{model}}::insert($data);
+	    {{model}}::insert($dataArray);
 
         $progress->finish();
         $this->command->getOutput()->writeln('');
