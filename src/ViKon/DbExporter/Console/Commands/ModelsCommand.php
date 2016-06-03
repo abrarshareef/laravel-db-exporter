@@ -25,7 +25,7 @@ class ModelsCommand extends Command
      */
     public function __construct()
     {
-        $this->signature   = 'vi-kon:db-exporter:models';
+        $this->name   = 'vi-kon:db-exporter:models';
         $this->description = 'Create models from database tables';
 
         parent::__construct();
