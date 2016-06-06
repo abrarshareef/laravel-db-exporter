@@ -136,8 +136,7 @@ class Seed
 
                 $modelData[] = var_export($value, true);
             }
-            $tableData[] = '[' . implode(',', $modelData) . ']';
-        }
+            $tableData[] = "\n".'[' . implode(',', $modelData) . ']';        }
 
         return [$structure, '[' . implode(',', $tableData) . ']', count($data)];
     }
