@@ -69,6 +69,15 @@ class Seed
         foreach ($columns as $column) {
             $structure[] = snake_case(str_replace('ID', 'Id', $column->getName()));
 
+            /* START of skip the id (first field) */
+            $id_column = strtolower($column->getName());
+            if ($id_column == 'id') {
+                $id_key = array_search($id_column, $structure);
+                if (isset($structure[$id_key])) {
+                    unset($structure[$id_key]);
+                }
+            }
+            /* END of skip the id (first field) */
             $type = $column->getType()->getName();
             switch ($type) {
                 case Type::INTEGER:
@@ -115,7 +124,14 @@ class Seed
                         $value = (string)$value;
                         break;
                 }
+
+                /* END of skip the id (first field) */
+                /* START of skip the id (first field) */
+                if ( strtolower($column) == 'id') { continue; }
+                /* END of skip the id (first field) */
+
                 $value = ( ($column == 'deleted_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
+
 
                 $modelData[] = var_export($value, true);
             }
