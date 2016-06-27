@@ -37,7 +37,24 @@ class {{className}} extends Seeder {
 	        array_push($dataArray, $this->create($row));
 	        $progress->advance();
 	    }
-	    {{model}}::insert($dataArray);
+
+
+	    if(count($dataArray) >= 2500)
+	    {
+            $multiDataArray = array_chunk($dataArray, 2500);
+            foreach($multiDataArray as $arrayChunk)
+            {
+                {{model}}::insert($arrayChunk);
+
+            }
+        }
+        else{
+
+	        {{model}}::insert($dataArray);
+
+        }
+
+
 
         $progress->finish();
         $this->command->getOutput()->writeln('');

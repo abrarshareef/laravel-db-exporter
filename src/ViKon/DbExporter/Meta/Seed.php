@@ -132,6 +132,9 @@ class Seed
                 /* END of skip the id (first field) */
 
                 $value = ( ($column == 'deleted_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
+                $value = ( ($column == 'completed_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
+                $value = ( ($column == 'locked_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
+
 
 
                 $modelData[] = var_export($value, true);
