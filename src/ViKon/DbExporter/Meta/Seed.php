@@ -134,6 +134,8 @@ class Seed
                 $value = ( ($column == 'deleted_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
                 $value = ( ($column == 'completed_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
                 $value = ( ($column == 'locked_at') && ( empty($value) || ($value == '0000-00-00 00:00:00'))) ? NULL : $value;
+                $value = ((strpos($column, '_id')) && ( empty($value) || ($value == 0))) ? NULL : $value;
+
 
 
 
